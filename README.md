@@ -1,8 +1,7 @@
 iphone-embed
 ============
 
-Displays a mobile website wrapped in an iPhone.
-
+Phone embed is an open source project designed to simplify embedding & displaying mobile websites. Some examples below.
 
 Usage
 -----
