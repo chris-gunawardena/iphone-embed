@@ -158,7 +158,7 @@
 		var width = document.getElementById('width').value;
 		var scale = document.getElementById('scale_value').value;
 
-		document.getElementById('embed-code-html').innerHTML = '<iframe frameborder="0" scrolling="0" src="'+host_url+'?width='+width+'&scale='+scale+'&url='+encodeURIComponent(url)+'" style="width:'+(width+10)+'px; height:'+((width+10)*2.1)+'px;"></iframe>';
+		document.getElementById('embed-code-html').innerHTML = '<iframe frameborder="0" scrolling="0" src="'+host_url+'?width='+width+'&scale='+scale+'&url='+encodeURIComponent(url)+'" style="width:'+(parseInt(width)+10)+'px; height:'+((parseInt(width)+10)*2.1)+'px;"></iframe>';
 		return false;
 	}
 
