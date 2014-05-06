@@ -16,22 +16,72 @@
 	</style>
 </head>
 <body>
-	<div id="embed-code">
-		<table>
-			<tr>
-				<td>Url:																		</td>		<td>	<input id="url" value="" onchange="url_change(this.value)" /> 	</td>
-				<td>Width:	<span id="width-text"></span> 	</td>		<td>	<input type="range" id="width" min="100" max="1000" value="320" onchange="width_change(this.value)">				</td>
-				<td>Scale:	<span id="scale-text"></span> 	</td>		<td>	<input type="range" id="scale_value" min="1" max="20" value="10" onchange="scale_value_change(this.value)">	</td>
-				<td>																				</td>		<td>	<button onclick="get_embed_code ()">Get embed code</button>		</td>
-			</tr>
-		</table>
-		<textarea id="embed-code-html" style="display:none;"></textarea>
-	</div>
 
-	<div id="phone-frame">
-		<img src="./iphone4_white.png">
-		<iframe id="iframe" src=""  ></iframe>
-	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6">
+				<div id="embed-code">
+					<div class="page-header">
+		              <h1>Phone embed</h1>
+		            </div>
+		            <p>
+		            	Phone embed is an open source project created to simplify embedding & displaying interactive mobile sites. Phone embed is released under the Open Source GPL license, which gives you the possibility to use it and modify it in every circumstance.
+		            </p>
+					<div class="well bs-component">
+		              <form class="form-horizontal">
+		                <fieldset>
+		                  <legend>Options</legend>
+
+		                  <div class="form-group">
+		                    <label for="url" class="col-lg-2 control-label">URL</label>
+		                    <div class="col-lg-10">
+		                      <input type="text" class="form-control" id="url" onchange="url_change(this.value)" placeholder="http://domain-name.com/">
+		                    </div>
+		                  </div>
+
+		                  <div class="form-group">
+		                    <label for="width" class="col-lg-2 control-label">Width:	<span id="width-text"></span></label>
+		                    <div class="col-lg-10">
+		                      <input type="range" class="form-control"  id="width" min="100" max="1000" value="320" onchange="width_change(this.value)">
+		                    </div>
+		                  </div>
+
+		                  <div class="form-group">
+		                    <label for="scale_value" class="col-lg-2 control-label">Scale:	<span id="scale-text"></span></label>
+		                    <div class="col-lg-10">
+		                      <input type="range" class="form-control" id="scale_value" min="1" max="20" value="10" onchange="scale_value_change(this.value)">
+		                    </div>
+		                  </div>
+
+
+		                  <div class="form-group" id="embed-code-wrapper" style="display:none;">
+		                    <label for="textArea" class="col-lg-2 control-label">Embed code</label>
+		                    <div class="col-lg-10">
+		                      <textarea class="form-control" rows="5"  id="embed-code-html" ></textarea>
+		                    </div>
+		                  </div>
+		 
+		                  <div class="form-group">
+		                    <div class="col-lg-10 col-lg-offset-2">
+		                      <button onclick="return get_embed_code()" type="submit" class="btn btn-primary">Get embed code</button>
+		                    </div>
+		                  </div>
+		                </fieldset>
+		              </form>
+		            </div>            
+				</div> <!-- #embed-code -->
+			</div> <!-- .col -->
+			<div class="col-xs-6">
+				<div id="phone-frame">
+					<img src="./iphone4_white.png">
+					<iframe id="iframe" src=""  ></iframe>
+				</div> <!-- #phone-frame -->
+			</div> <!-- .col -->
+		</div> <!-- .row -->
+	</div> <!-- .container -->
+
+
 </body>
 
 <script type="text/javascript">
@@ -39,6 +89,13 @@
 	//hide embed code		
 	if( inside_iframe() )
 	{	document.getElementById('embed-code').style.display = 'none';
+	}else{
+		//load bootstrap to make things pretty
+		var link = document.createElement('link')
+		link.setAttribute('rel', 'stylesheet')
+		link.setAttribute('type', 'text/css')
+		link.setAttribute('href', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/superhero/bootstrap.min.css')
+		document.getElementsByTagName('head')[0].appendChild(link)
 	}
 
 	//SET ATTRIBUTES FROM URL VALUES
@@ -55,7 +112,7 @@
 	function url_change(url)
 	{	document.getElementById('iframe').src = url;
 		document.getElementById('url').value = url;		
-		document.getElementById('embed-code-html').style.display = 'none';
+		document.getElementById('embed-code-wrapper').style.display = 'none';
 	}
 
 	function width_change(width)
@@ -64,7 +121,7 @@
 		document.getElementById('width-text').innerHTML = width+'px';
 
 		scale_value_change( (width/640)*10 )
-		document.getElementById('embed-code-html').style.display = 'none';
+		document.getElementById('embed-code-wrapper').style.display = 'none';
 	}
 
 	/*function scale_type_change(scale_type){
@@ -91,17 +148,18 @@
 		document.getElementById('scale_value').value = scale*10;
 		document.getElementById('scale-text').innerHTML = scale;
 
-		document.getElementById('embed-code-html').style.display = 'none';
+		document.getElementById('embed-code-wrapper').style.display = 'none';
 	}
 
 	function get_embed_code () {
-		document.getElementById('embed-code-html').style.display = 'block';
-		var host_url = 'http://localhost/iphone-embed/';
+		document.getElementById('embed-code-wrapper').style.display = 'block';
+		var host_url = location.protocol + '//' + location.host + location.pathname;
 		var url = document.getElementById('url').value;
 		var width = document.getElementById('width').value;
 		var scale = document.getElementById('scale_value').value;
 
 		document.getElementById('embed-code-html').innerHTML = '<iframe frameborder="0" scrolling="0" src="'+host_url+'?width='+width+'&scale='+scale+'&url='+encodeURIComponent(url)+'" style="width:'+(width+10)+'px; height:'+((width+10)*2.1)+'px;"></iframe>';
+		return false;
 	}
 
 	//helper functions
