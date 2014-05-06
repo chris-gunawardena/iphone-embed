@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>iPhone embed</title>
+	<style type="text/css">
+		body { font-family: Arial }
+		div#phone-frame{ width: 320px; position: relative;  }
+		div#phone-frame img{ width: 100%; }
+		iframe{ border: none; position: absolute;top: 14.3%;left: 7.1%; 
+			transform-origin: 0 0; -ms-transform-origin: 0 0; -webkit-transform-origin: 0 0;
+		}
+		textarea{ width: 300px; height: 100px; }
+	</style>
+</head>
+<body>
+	<div id="embed-code">
+		<table>
+			<tr>
+				<td>Url:																		</td>		<td>	<input id="url" value="" onchange="url_change(this.value)" /> 	</td>
+				<td>Width:	<span id="width-text"></span> 	</td>		<td>	<input type="range" id="width" min="100" max="1000" value="320" onchange="width_change(this.value)">				</td>
+				<td>Scale:	<span id="scale-text"></span> 	</td>		<td>	<input type="range" id="scale_value" min="1" max="20" value="10" onchange="scale_value_change(this.value)">	</td>
+				<td>																				</td>		<td>	<button onclick="get_embed_code ()">Get embed code</button>		</td>
+			</tr>
+		</table>
+		<textarea id="embed-code-html" style="display:none;"></textarea>
+	</div>
+
+	<div id="phone-frame">
+		<img src="./iphone4_white.png">
+		<iframe id="iframe" src=""  ></iframe>
+	</div>
+</body>
+
+<script type="text/javascript">
+	
+	//hide embed code		
+	if( inside_iframe() )
+	{	document.getElementById('embed-code').style.display = 'none';
+	}
+
+	//SET ATTRIBUTES FROM URL VALUES
+	//if URL set, set the iframe url
+	var url_params = get_url_params();
+
+	url_params.url ? url_change( decodeURIComponent(url_params.url) ) : url_change( 'http://planning-poker.net' );
+	url_params.width ? width_change( url_params.width ) : width_change( 320 );
+	url_params.scale ? scale_value_change( url_params.scale ) : scale_value_change( (document.getElementById('width').value/640)*10 );
+
+	
+
+	//
+	function url_change(url)
+	{	document.getElementById('iframe').src = url;
+		document.getElementById('url').value = url;		
+		document.getElementById('embed-code-html').style.display = 'none';
+	}
+
+	function width_change(width)
+	{	document.getElementById('phone-frame').style.width = width+'px';
+		document.getElementById('width').value = width;
+		document.getElementById('width-text').innerHTML = width+'px';
+
+		scale_value_change( (width/640)*10 )
+		document.getElementById('embed-code-html').style.display = 'none';
+	}
+
+	/*function scale_type_change(scale_type){
+		switch(scale_type)
+		{	case 'Auto':
+				scale_value_change( 10 );
+				break;
+			case 'Custom':
+				scale_value_change( document.getElementById('scale_value').value );				
+				break;
+		}
+	}*/
+
+	function scale_value_change( scale )
+	{	var scale = scale/10;
+
+		document.getElementById('iframe').style['width'] = ((1/scale)*86.9)+'%';
+		document.getElementById('iframe').style['height'] = ((1/scale)*71.4)+'%';
+
+		document.getElementById('iframe').style['transform'] = 'scale('+scale+')';
+		document.getElementById('iframe').style['-ms-transform'] = 'scale('+scale+')';
+		document.getElementById('iframe').style['-webkit-transform'] = 'scale('+scale+')';
+
+		document.getElementById('scale_value').value = scale*10;
+		document.getElementById('scale-text').innerHTML = scale;
+
+		document.getElementById('embed-code-html').style.display = 'none';
+	}
+
+	function get_embed_code () {
+		document.getElementById('embed-code-html').style.display = 'block';
+		var host_url = 'http://localhost/iphone-embed/';
+		var url = document.getElementById('url').value;
+		var width = document.getElementById('width').value;
+		var scale = document.getElementById('scale_value').value;
+
+		document.getElementById('embed-code-html').innerHTML = '<iframe frameborder="0" scrolling="0" src="'+host_url+'?width='+width+'&scale='+scale+'&url='+encodeURIComponent(url)+'" style="width:'+(width+10)+'px; height:'+((width+10)*2.1)+'px;"></iframe>';
+	}
+
+	//helper functions
+	function inside_iframe () {
+		try {
+			return window.self !== window.top;
+		} catch (e) {
+			return true;
+		}
+	}	
+	function get_url_params()
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars;
+	}
+
+
+</script>
+
+</html>
