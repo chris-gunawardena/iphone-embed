@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>iPhone embed</title>
+	<title>Phone embed</title>
 	<style type="text/css">
 		body { font-family: Arial }
 		div#phone-frame{ width: 320px; position: relative;  }
@@ -18,59 +18,65 @@
 <body>
 
 
+
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-6">
 				<div id="embed-code">
 					<div class="page-header">
-		              <h1>Phone embed</h1>
-		            </div>
-		            <p>
-		            	Phone embed is an open source project created to simplify embedding & displaying interactive mobile sites. Phone embed is released under the Open Source GPL license, which gives you the possibility to use it and modify it in every circumstance.
-		            </p>
+					  <h1>Phone embed</h1>
+					</div>
+					<p>
+						Phone embed is an open source project created to simplify embedding & displaying interactive mobile sites. Phone embed is released under the Open Source GPL license, which gives you the possibility to use it and modify it in every circumstance.
+					</p>
 					<div class="well bs-component">
-		              <form class="form-horizontal">
-		                <fieldset>
-		                  <legend>Options</legend>
+					  <form class="form-horizontal">
+						<fieldset>
+						  <legend>Options</legend>
 
-		                  <div class="form-group">
-		                    <label for="url" class="col-lg-2 control-label">URL</label>
-		                    <div class="col-lg-10">
-		                      <input type="text" class="form-control" id="url" onchange="url_change(this.value)" placeholder="http://domain-name.com/">
-		                    </div>
-		                  </div>
+						  <div class="form-group">
+							<label for="url" class="col-lg-2 control-label">URL</label>
+							<div class="col-lg-10">
+							  <input type="text" class="form-control" id="url" onchange="url_change(this.value)" placeholder="http://domain-name.com/">
+							</div>
+						  </div>
 
-		                  <div class="form-group">
-		                    <label for="width" class="col-lg-2 control-label">Width:	<span id="width-text"></span></label>
-		                    <div class="col-lg-10">
-		                      <input type="range" class="form-control"  id="width" min="100" max="1000" value="320" onchange="width_change(this.value)">
-		                    </div>
-		                  </div>
+						  <div class="form-group">
+							<label for="width" class="col-lg-2 control-label">Width:	<span id="width-text"></span></label>
+							<div class="col-lg-10">
+							  <input type="range" class="form-control"  id="width" min="100" max="1000" value="320" onchange="width_change(this.value)">
+							</div>
+						  </div>
 
-		                  <div class="form-group">
-		                    <label for="scale_value" class="col-lg-2 control-label">Scale:	<span id="scale-text"></span></label>
-		                    <div class="col-lg-10">
-		                      <input type="range" class="form-control" id="scale_value" min="1" max="20" value="10" onchange="scale_value_change(this.value)">
-		                    </div>
-		                  </div>
+						  <div class="form-group">
+							<label for="scale_value" class="col-lg-2 control-label">Scale:	<span id="scale-text"></span></label>
+							<div class="col-lg-10">
+							  <input type="range" class="form-control" id="scale_value" min="1" max="20" value="10" onchange="scale_value_change(this.value)">
+							</div>
+						  </div>
 
 
-		                  <div class="form-group" id="embed-code-wrapper" style="display:none;">
-		                    <label for="textArea" class="col-lg-2 control-label">Embed code</label>
-		                    <div class="col-lg-10">
-		                      <textarea class="form-control" rows="5"  id="embed-code-html" ></textarea>
-		                    </div>
-		                  </div>
+						  <div class="form-group" id="embed-code-wrapper" style="display:none;">
+							<label for="textArea" class="col-lg-2 control-label">Embed code</label>
+							<div class="col-lg-10">
+							  <textarea class="form-control" rows="5"  id="embed-code-html" ></textarea>
+							</div>
+						  </div>
 		 
-		                  <div class="form-group">
-		                    <div class="col-lg-10 col-lg-offset-2">
-		                      <button onclick="return get_embed_code()" type="submit" class="btn btn-primary">Get embed code</button>
-		                    </div>
-		                  </div>
-		                </fieldset>
-		              </form>
-		            </div>            
+						  <div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+							  <button onclick="return get_embed_code()" type="submit" class="btn btn-primary">Get embed code</button>
+							</div>
+						  </div>
+						</fieldset>
+					  </form>
+					</div>            
 				</div> <!-- #embed-code -->
+
+				<p>Made by Chris Gunawardena - <a href="http://chris.gunawardena.id.au" target="_blank">Blog</a> - <a href="http://www.linkedin.com/in/chrisgunawardena" target="_blank">Linkedin</a>. 
+				<p>Code released under the <a target="_blank" href="https://github.com/chris-gunawardena/iphone-embed/blob/master/LICENSE">GPL License</a>.</p>
+				<p>Icons from <a href="http://thenounproject.com/term/playing-cards/29726/" target="_blank" rel="nofollow">Playing Cards designed by Roman Kovbasyuk from the Noun Project</a>. </p>
+
 			</div> <!-- .col -->
 			<div class="col-xs-6">
 				<div id="phone-frame">
@@ -79,10 +85,23 @@
 				</div> <!-- #phone-frame -->
 			</div> <!-- .col -->
 		</div> <!-- .row -->
+
 	</div> <!-- .container -->
 
 
+
 </body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50705990-1');
+  ga('send', 'pageview');
+
+</script>
 
 <script type="text/javascript">
 	
