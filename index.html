@@ -13,6 +13,10 @@
 			transform-origin: 0 0; -ms-transform-origin: 0 0; -webkit-transform-origin: 0 0;
 		}
 		textarea{ width: 300px; height: 100px; }
+		input[type=range]{
+			box-shadow: none;
+			background-color: transparent;
+		}
 	</style>
 </head>
 <body>
@@ -22,7 +26,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-6">
-				<div id="embed-code">
+				<div id="embed-code" style="display:none;">
 					<div class="page-header">
 					  <h1>Phone embed</h1>
 					</div>
@@ -37,21 +41,21 @@
 						  <div class="form-group">
 							<label for="url" class="col-lg-2 control-label">URL</label>
 							<div class="col-lg-10">
-							  <input type="text" class="form-control" id="url" onchange="url_change(this.value)" placeholder="http://domain-name.com/">
+							  <input type="text" class="form-control" id="url" onchange="url_change(this.value)"  placeholder="http://domain-name.com/">
 							</div>
 						  </div>
 
 						  <div class="form-group">
 							<label for="width" class="col-lg-2 control-label">Width:	<span id="width-text"></span></label>
 							<div class="col-lg-10">
-							  <input type="range" class="form-control"  id="width" min="100" max="1000" value="320" onchange="width_change(this.value)">
+							  <input type="range" class="form-control"  id="width" min="100" max="1000" value="320" onchange="width_change(this.value)" oninput="width_change(this.value)">
 							</div>
 						  </div>
 
 						  <div class="form-group">
 							<label for="scale_value" class="col-lg-2 control-label">Scale:	<span id="scale-text"></span></label>
 							<div class="col-lg-10">
-							  <input type="range" class="form-control" id="scale_value" min="1" max="20" value="10" onchange="scale_value_change(this.value)">
+							  <input type="range" class="form-control" id="scale_value" min="1" max="20" value="10" onchange="scale_value_change(this.value)" oninput="scale_value_change(this.value)">
 							</div>
 						  </div>
 
@@ -71,11 +75,14 @@
 						</fieldset>
 					  </form>
 					</div>            
+
+					<p>Made by Chris Gunawardena - <a href="http://chris.gunawardena.id.au" target="_blank">Blog</a> - <a href="http://www.linkedin.com/in/chrisgunawardena" target="_blank">Linkedin</a>. 
+					<p>Code released under the <a target="_blank" href="https://github.com/chris-gunawardena/iphone-embed/blob/master/LICENSE">GPL License</a>.</p>
+					<p>Icons designed by <a href="http://thenounproject.com/term/playing-cards/29726/" target="_blank" rel="nofollow">Roman Kovbasyuk from the Noun Project</a>. </p>
+					<p><a href="https://github.com/chris-gunawardena/iphone-embed/issues" target="_blank">Issues & feature requests</a>.</p>
+
 				</div> <!-- #embed-code -->
 
-				<p>Made by Chris Gunawardena - <a href="http://chris.gunawardena.id.au" target="_blank">Blog</a> - <a href="http://www.linkedin.com/in/chrisgunawardena" target="_blank">Linkedin</a>. 
-				<p>Code released under the <a target="_blank" href="https://github.com/chris-gunawardena/iphone-embed/blob/master/LICENSE">GPL License</a>.</p>
-				<p>Icons from <a href="http://thenounproject.com/term/playing-cards/29726/" target="_blank" rel="nofollow">Playing Cards designed by Roman Kovbasyuk from the Noun Project</a>. </p>
 
 			</div> <!-- .col -->
 			<div class="col-xs-6">
@@ -105,10 +112,9 @@
 
 <script type="text/javascript">
 	
-	//hide embed code		
-	if( inside_iframe() )
-	{	document.getElementById('embed-code').style.display = 'none';
-	}else{
+	//show embed code if not inside iframe
+	if( !inside_iframe() )
+	{	document.getElementById('embed-code').style.display = 'block';
 		//load bootstrap to make things pretty
 		var link = document.createElement('link')
 		link.setAttribute('rel', 'stylesheet')
@@ -121,7 +127,7 @@
 	//if URL set, set the iframe url
 	var url_params = get_url_params();
 
-	url_params.url ? url_change( decodeURIComponent(url_params.url) ) : url_change( 'http://planning-poker.net' );
+	url_params.url ? url_change( decodeURIComponent(url_params.url) ) : url_change( 'http://m.wikipedia.org' );
 	url_params.width ? width_change( url_params.width ) : width_change( 320 );
 	url_params.scale ? scale_value_change( url_params.scale ) : scale_value_change( (document.getElementById('width').value/640)*10 );
 
