@@ -1,16 +1,18 @@
-iphone-embed
+phone-embed
 ============
 
-Phone embed is an open source project designed to simplify embedding & displaying mobile websites. Some examples below.
+Phone embed is an open source project created to simplify embedding & displaying interactive mobile sites. Phone embed is released under the Open Source GPL license, which gives you the possibility to use it and modify it in every circumstance. 
 
 Usage
 -----
 ````
-<iframe style="width:400px" src="http://chris.gunawardena.id.au/iphone-embed/?url=http://chris.gunawardena.id.au/portfolio/rmit/m/"  onload="this.style.height = (this.style.width.slice(0,-2)*2.1)  + 'px';" frameborder="0" scrolling="no" ></iframe>
+<iframe frameborder="0" scrolling="0" src="http://phone-embed.info/?width=320&scale=5&url=http%3A%2F%2Fm.wikipedia.org" style="width:330px; height:693px;"></iframe>
 ````
 When the width of the iFrame is set, height will be automatically calculated and everything else will resize to fit.
 
 Demo
 ----
 
-[http://chris.gunawardena.id.au/iphone-embed/test.html](http://chris.gunawardena.id.au/iphone-embed/test.html)
+<iframe frameborder="0" scrolling="0" src="http://phone-embed.info/?width=320&scale=5&url=http%3A%2F%2Fm.wikipedia.org" style="width:330px; height:693px;"></iframe>
+
+[http://phone-embed.info](http://phone-embed.info)
