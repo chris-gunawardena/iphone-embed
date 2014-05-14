@@ -1,4 +1,4 @@
-phone-embed.info
+http://phone-embed.info
 ============
 
 Phone embed is an open source project created to simplify embedding & displaying interactive mobile sites. Phone embed is released under the Open Source GPL license, which gives you the possibility to use it and modify it in every circumstance. 
